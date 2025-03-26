@@ -1,20 +1,36 @@
 package main
 
 import (
-	"log"
-
-	"github.com/gofiber/fiber/v2"
+	"fmt"
+	configs "my-fiber-app/config"
+	database "my-fiber-app/config/database"
+	redis "my-fiber-app/config/redis"
+	logs "my-fiber-app/pkg/utils/logs"
+	translate "my-fiber-app/pkg/translate"
+	routes "my-fiber-app/routes"
+	handler "my-fiber-app/handler"
 )
 
 func main() {
-	// Create a new Fiber app
-	app := fiber.New()
 
-	// Define a simple route
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, Fiber! new world")
-	})
+	// Initial configuration
+	app_configs := configs.NewConfig()
 
-	// Start the server
-	log.Fatal(app.Listen(":3000"))
+	// Initial database
+	db_pool := database.GetDB()
+
+	// Initialize router
+	app := routes.New(db_pool)
+
+	// Initialize redis client
+	rdb := redis.NewRedisClient()
+
+	// Initialize the translate
+	if err := translate.Init(); err != nil {
+		logs.NewCustomLog("Failed_initialize_i18n", err.Err.Error(), "error")
+	}
+
+	handler.NewFrontService(app, db_pool, rdb)
+
+	app.Listen(fmt.Sprintf("%s:%d", app_configs.AppHost, app_configs.AppPort))
 }
