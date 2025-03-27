@@ -3,10 +3,9 @@ package redis
 import (
 	"context"
 	"log"
-	config "my-fiber-app/config"
-	logs "my-fiber-app/pkg/utils/logs"
 	"sync"
-
+	config "my-fiber-app/config"
+	custom_log "my-fiber-app/pkg/custom_log"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -27,7 +26,7 @@ func NewRedisClient() *redis.Client {
 		})
 		pong, err := client.Ping(context.Background()).Result()
 		if err != nil {
-			logs.NewCustomLog("connect_redis_failed", err.Error(), "error")
+			custom_log.NewCustomLog("connect_redis_failed", err.Error(), "error")
 			log.Fatalf("Could not connect to Redis: %v", err)
 		}
 		log.Printf("Connected to Redis successfully: %s", pong)

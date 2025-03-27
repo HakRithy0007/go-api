@@ -1,11 +1,11 @@
-package config
+package configs
 
 import (
 	"log"
 	"os"
+	utils "my-fiber-app/pkg/utils"
 
 	"github.com/joho/godotenv"
-	utils_env "my-fiber-app/pkg/utils/env"
 )
 
 type AppConfig struct {
@@ -18,12 +18,10 @@ func NewConfig() *AppConfig {
 	if err != nil {
 		log.Fatalf("Error loading .env file %v", err)
 	}
-	host := os.Getenv("API_HOST")
-	port := utils_env.GetenvInt("API_PORT", 8888)
-
+	host := os.Getenv("API_HOSt")
+	port := utils.GetenvInt("API_PORT", 8889)
 	return &AppConfig{
 		AppHost: host,
 		AppPort: port,
 	}
-
 }

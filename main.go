@@ -3,12 +3,10 @@ package main
 import (
 	"fmt"
 	configs "my-fiber-app/config"
-	database "my-fiber-app/config/database"
+	routers "my-fiber-app/routers"
 	redis "my-fiber-app/config/redis"
-	logs "my-fiber-app/pkg/utils/logs"
-	translate "my-fiber-app/pkg/translate"
-	routes "my-fiber-app/routes"
-	handler "my-fiber-app/handler"
+	"my-fiber-app/config/database"
+	"my-fiber-app/config/redis/v9"
 )
 
 func main() {
@@ -20,7 +18,7 @@ func main() {
 	db_pool := database.GetDB()
 
 	// Initialize router
-	app := routes.New(db_pool)
+	app := routers.New(db_pool)
 
 	// Initialize redis client
 	rdb := redis.NewRedisClient()

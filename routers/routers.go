@@ -1,18 +1,18 @@
-package routes
+package router
 
 import (
 	"github.com/gofiber/contrib/fiberi18n/v2"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/jmoiron/sqlx"
-	"github.com/vertica/vertica-sql-go/logger"
 	"golang.org/x/text/language"
 )
 
 func New(db_pool *sqlx.DB) *fiber.App {
 	f := fiber.New(fiber.Config{})
 
-	f.Use(logger.New("hello"))
+	f.Use(logger.New())
 
 	f.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
