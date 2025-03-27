@@ -3,7 +3,7 @@ package configs
 import (
 	"log"
 	"os"
-	utils "my-fiber-app/pkg/utils"
+	env "my-fiber-app/pkg/utils/env"
 	"github.com/joho/godotenv"
 )
 
@@ -24,8 +24,8 @@ func InitRedis() *RedisConfig {
 	redis_host := os.Getenv("REDIS_HOST")
 	redis_port := os.Getenv("REDIS_PORT")
 	redis_password := os.Getenv("REDIS_PASSWORD")
-	redis_db := utils.GetenvInt("REDIS_DB", 0)
-	redis_exprie := utils.GetenvInt("REDIS_EXPIRE", 60)
+	redis_db := env.GetenvInt("REDIS_DB", 0)
+	redis_exprie := env.GetenvInt("REDIS_EXPIRE", 60)
 
 	return &RedisConfig{
 		RedisHost:     redis_host,

@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	configs "my-fiber-app/config"
-	routers "my-fiber-app/routers"
+	database "my-fiber-app/config/database"
 	redis "my-fiber-app/config/redis"
-	"my-fiber-app/config/database"
-	"my-fiber-app/config/redis/v9"
+	"my-fiber-app/handler"
+	custom_log "my-fiber-app/pkg/custom_log"
+	translate "my-fiber-app/pkg/utils/translate"
+	routers "my-fiber-app/routers"
 )
 
 func main() {
@@ -25,7 +27,7 @@ func main() {
 
 	// Initialize the translate
 	if err := translate.Init(); err != nil {
-		logs.NewCustomLog("Failed_initialize_i18n", err.Err.Error(), "error")
+		custom_log.NewCustomLog("Failed_initialize_i18n", err.Err.Error(), "error")
 	}
 
 	handler.NewFrontService(app, db_pool, rdb)
