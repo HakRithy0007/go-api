@@ -81,7 +81,7 @@ func (a *authRepositoryImpl) Login(username, password string) (*AuthResponse, *e
 	redisUtil := redis_util.NewRedisUtil(a.redis)
 	redisUtil.SetCacheKey(key, claims, context.Background())
 
-	_ = godotenv.Load() // Ignore error if .env file not found
+	_ = godotenv.Load() 
 
 	secretKey := os.Getenv("JWT_SECRET_KEY")
 
