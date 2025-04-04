@@ -31,7 +31,6 @@ func NewFrontService(app *fiber.App, db_pool *sqlx.DB, redis *redis.Client) *Fro
 }
 
 func NewServiceHandlers(app *fiber.App, db_pool *sqlx.DB, redis *redis.Client) *ServiceHandlers {
-
 	return &ServiceHandlers{
 		Fronted: NewFrontService(app, db_pool, redis),
 	}
