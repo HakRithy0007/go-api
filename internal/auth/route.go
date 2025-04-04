@@ -21,6 +21,8 @@ func NewAuthRoute(app *fiber.App, dbPool *sqlx.DB, redisClient *redis.Client) *A
 func (a *AuthRoute) RegisterAuthRoute() *AuthRoute {
 	v1 := a.app.Group("/api/v1")
 	auth := v1.Group("/auth")
+
+	// Login
 	auth.Post("/login", a.handler.Login)
 
 	return a
