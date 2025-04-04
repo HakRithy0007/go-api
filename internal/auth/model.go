@@ -5,7 +5,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// AuthLoginRequest represents the login request payload
 type AuthLoginRequest struct {
 	Auth struct {
 		Username string `json:"username" validate:"required"`
