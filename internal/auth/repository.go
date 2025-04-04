@@ -64,7 +64,6 @@ func (a *authRepositoryImpl) Login(username, password string) (*AuthResponse, *e
 	hours := env.GetenvInt("JWT_EXP_HOUR", 7)
 	expirationTime := time.Now().Add(time.Duration(hours) * time.Hour)
 	loginSession, err := uuid.NewV7()
-
 	if err != nil {
 		custom_log.NewCustomLog("uuid_generate_failed", err.Error(), "error")
 		return nil, msg.NewErrorResponse("uuid_generate_failed", fmt.Errorf("failed to generate UUID. Please try again later"))
