@@ -38,6 +38,7 @@ func NewAuthRepository(dbPool *sqlx.DB, redisClient *redis.Client) AuthRepositor
 	}
 }
 
+// Login
 func (a *authRepositoryImpl) Login(username, password string) (*AuthResponse, *error.ErrorResponse) {
 	var member MemberData
 	msg := error.ErrorResponse{}
