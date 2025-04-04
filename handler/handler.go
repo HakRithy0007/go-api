@@ -19,7 +19,7 @@ type FrontService struct {
 
 func NewFrontService(app *fiber.App, db_pool *sqlx.DB, redis *redis.Client) *FrontService {
 
-	// Authentication
+	// Auth
 	auth := auth.NewAuthRoute(app, db_pool, redis).RegisterAuthRoute()
 
 	// Middleware
