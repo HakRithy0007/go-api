@@ -44,7 +44,7 @@ func (a *AuthHandler) Login(c *fiber.Ctx) error {
 			),
 		)
 	}
-
+	// Service
 	success, err := a.authService.Login(req.Auth.Username, req.Auth.Password)
 
 	if err != nil {
