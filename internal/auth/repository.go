@@ -117,6 +117,7 @@ func (a *authRepositoryImpl) Login(username, password string) (*AuthResponse, *e
 	return &res, nil
 }
 
+// CheckSession
 func (a *authRepositoryImpl) CheckSession(loginSession string, memberID float64) (bool, *error.ErrorResponse) {
 	msg := error.ErrorResponse{}
 
