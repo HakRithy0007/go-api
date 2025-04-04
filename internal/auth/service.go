@@ -28,6 +28,7 @@ func (a *authServiceImpl) Login(username, password string) (*AuthResponse, *erro
 	return a.repo.Login(username, password)
 }
 
+// CheckSession
 func (a *authServiceImpl) CheckSession(loginSession string, userID float64) (bool, *error.ErrorResponse) {
 	return a.repo.CheckSession(loginSession, userID)
 }
