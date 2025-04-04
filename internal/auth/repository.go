@@ -106,6 +106,7 @@ func (a *authRepositoryImpl) Login(username, password string) (*AuthResponse, *e
 	res.Auth.Token = tokenString
 	res.Auth.TokenType = "jwt"
 
+	// Audit log
 	auditDesc := fmt.Sprintf(`Member : %s has been login to the system`, username)
 	_, err = audit.AddMemeberAuditLog(member.ID, "Login", auditDesc, 1, "userAgent", member.Username, "ip", member.ID, a.dbPool)
 	if err != nil {
