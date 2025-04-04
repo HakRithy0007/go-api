@@ -121,6 +121,7 @@ func (a *authRepositoryImpl) Login(username, password string) (*AuthResponse, *e
 func (a *authRepositoryImpl) CheckSession(loginSession string, memberID float64) (bool, *error.ErrorResponse) {
 	msg := error.ErrorResponse{}
 
+	// Redis
 	key := fmt.Sprintf("member: %d", int(memberID))
 	redisUtil := redis_util.NewRedisUtil(a.redis)
 
