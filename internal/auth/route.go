@@ -11,6 +11,7 @@ type AuthRoute struct {
 	handler *AuthHandler
 }
 
+
 func NewAuthRoute(app *fiber.App, dbPool *sqlx.DB, redisClient *redis.Client) *AuthRoute {
 	return &AuthRoute{
 		app:     app,
