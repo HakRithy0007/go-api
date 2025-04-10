@@ -28,6 +28,7 @@ func (a *AuthRoute) RegisterAuthRoute() *AuthRoute {
 	return a
 }
 
+
 // POST /auth/register → Register a new user
 
 // POST /auth/login → Login and get a token
