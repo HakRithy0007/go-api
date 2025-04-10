@@ -77,3 +77,4 @@ func (a *AuthHandler) Login(c *fiber.Ctx) error {
 		success,
 	))
 }
+
